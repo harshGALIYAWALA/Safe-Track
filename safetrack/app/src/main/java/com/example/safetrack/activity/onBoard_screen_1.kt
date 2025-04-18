@@ -1,0 +1,40 @@
+package com.example.safetrack.activity
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.safetrack.R
+import com.google.firebase.auth.FirebaseAuth
+
+class onBoard_screen_1 : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_on_board_screen1)
+
+        auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
+        val nextBtn = findViewById<AppCompatButton>(R.id.nextBtn)
+        nextBtn.setOnClickListener {
+            startActivity(Intent(this, onboard_screen_2::class.java))
+        }
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+}

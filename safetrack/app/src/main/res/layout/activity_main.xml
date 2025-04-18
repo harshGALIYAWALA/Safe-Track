@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/vector" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:gravity="center"
+            android:text="Need"
+            android:textColor="@color/mainColor"
+            android:fontFamily="@font/baloo2_bold"
+            android:textSize="35sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:gravity="center"
+            android:text="emergency Help?"
+            android:textColor="@color/mainColor"
+            android:fontFamily="@font/baloo2_bold"
+            android:textSize="35sp" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/emergencyButton"
+        android:layout_width="170dp"
+        android:layout_height="165dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/emergency_red"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="press once to activate to send SOS\npress long to activate every feature at once"
+        android:fontFamily="@font/baloo2_bold"
+        android:textSize="10sp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        app:cardBackgroundColor="#EEEEEE"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Live Track"
+                    android:fontFamily="@font/baloo2_bold"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:id="@+id/direactToMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/arrow_right" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Current"
+                            android:fontFamily="@font/baloo2_bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_horizontal"
+                            android:text="Position"
+                            android:fontFamily="@font/baloo2_bold" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="On Road"
+                        android:fontFamily="@font/baloo2_regular"
+                        android:textColor="@color/mainColor"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal"
+                        android:text="ETA"
+                        android:fontFamily="@font/baloo2_bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center_horizontal"
+                        android:text="2hr 45min"
+                        android:fontFamily="@font/baloo2_regular"
+                        android:textColor="@color/mainColor"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="10dp">
+                        <org.maplibre.android.maps.MapView
+                            android:id="@+id/mapView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:weightSum="2">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="#EEEEEE"
+            app:cardCornerRadius="10dp"
+            android:layout_weight="1"
+            android:layout_marginRight="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Live Track"
+                        android:fontFamily="@font/baloo2_bold"
+                        android:textSize="18dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/arrow_right" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Initial:"
+                            android:fontFamily="@font/baloo2_bold"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Home"
+                            android:fontFamily="@font/baloo2_regular"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp"
+                            android:textColor="@color/mainColor"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Final:"
+                            android:fontFamily="@font/baloo2_bold"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="College"
+                            android:textColor="@color/mainColor"
+                            android:fontFamily="@font/baloo2_regular"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Name can be Customize in Setting"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/baloo2_regular"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="3dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="#EEEEEE"
+            app:cardCornerRadius="10dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Emergency"
+                            android:fontFamily="@font/baloo2_bold"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Contacts"
+                            android:fontFamily="@font/baloo2_bold"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="15dp"/>
+                    </FrameLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/arrow_right" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="181 - Women HelpLine"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/baloo2_medium"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="112 - Ambulance"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/baloo2_medium"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/contacts"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        app:cardBackgroundColor="#EEEEEE"
+        app:cardCornerRadius="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Favorite Contact"
+                    android:fontFamily="@font/baloo2_bold"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="5dp"
+                    />
+                <LinearLayout
+                    android:id="@+id/Contacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/arrow_right" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@drawable/white_ellipse" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@drawable/white_ellipse" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@drawable/white_ellipse" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="6dp"
+                        android:src="@drawable/white_ellipse" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:weightSum="3">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/contact_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="10dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="#EEEEEE"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_contacts" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/icon_map"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="10dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="#EEEEEE"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_map" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/settings_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="10dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="#EEEEEE"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_settings"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>

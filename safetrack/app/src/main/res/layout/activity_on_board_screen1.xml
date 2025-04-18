@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.onBoard_screen_1"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/vector"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/onboard_1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stay Safe with Safe Track"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+        android:textColor="@color/mainColor"
+        android:textStyle="bold"
+        android:fontFamily="@font/baloo2_bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Safe Track, the ultimate women’s safety app designed to keep you protected during your travels. With real-time tracking, smart alerts, and emergency response features, we ensure peace of mind for you and your loved ones."
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:fontFamily="@font/poppins_bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/blue_ellipse"
+            android:layout_marginRight="5dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/white_ellipse"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/white_ellipse"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/white_ellipse"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/nextBtn"
+        android:layout_width="225dp"
+        android:layout_height="48dp"
+        android:background="@drawable/shadow_button"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baloo2_bold"/>
+
+</LinearLayout>

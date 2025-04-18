@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">safe track</string>
+    <string name="select_gender">Select Gender</string>
+
+    <string name="accessibility_service_description">Used for triggering SOS via Power Button</string>
+
+
+</resources>

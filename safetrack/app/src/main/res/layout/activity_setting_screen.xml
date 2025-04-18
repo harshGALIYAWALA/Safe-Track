@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.setting_screen"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/arrow_right"
+                android:scaleX="-1"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Setting_>!"
+                android:fontFamily="@font/baloo2_bold"
+                android:textSize="30dp"
+                android:layout_marginLeft="15dp"/>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            app:cardBackgroundColor="#EEEEEE"
+            app:cardCornerRadius="15dp"
+            android:elevation="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/white_ellipse"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    app:cardCornerRadius="50dp"
+                    >
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/baseline_person_24"/>
+                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Name and surname"
+                    android:gravity="end"
+                    android:layout_marginTop="17dp"
+                    android:textSize="30sp"
+                    android:paddingRight="15dp"
+                    android:fontFamily="@font/baloo2_bold"
+                    android:layout_marginRight="40dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔒 Security &amp; Emergency Settings"
+            android:textSize="20sp"
+            android:fontFamily="@font/baloo2_bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Safe Word/Panic Code"
+                android:fontFamily="@font/baloo2_bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17sp"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_gravity="end"
+                android:layout_marginTop="9dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Emergency SOS Activation "
+                android:fontFamily="@font/baloo2_bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17sp"/>
+            <Switch
+                android:id="@+id/emergencyForegoundButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Auto Emergency Calling"
+                android:fontFamily="@font/baloo2_bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17sp"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔴 Critical Emergency Features"
+            android:textSize="20sp"
+            android:fontFamily="@font/baloo2_bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Silent SOS Mode"
+                android:fontFamily="@font/baloo2_bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17sp"/>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Panic Shake Sensitivity"
+                android:fontFamily="@font/baloo2_bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17sp"/>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"/>
+        </androidx.cardview.widget.CardView>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About Us"
+            android:textSize="20sp"
+            android:fontFamily="@font/baloo2_bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/contactUs"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Contact Us?"
+                android:fontFamily="@font/baloo2_bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17sp"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_gravity="end"
+                android:layout_marginTop="9dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/termAndCondition"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            android:elevation="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Terms &amp; Conditions"
+                android:fontFamily="@font/baloo2_bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="17sp"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_gravity="end"
+                android:layout_marginTop="9dp"/>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logOut"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shadow_button"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:fontFamily="@font/baloo2_bold"
+            android:layout_marginTop="15dp"/>
+
+    </LinearLayout>
+</ScrollView>
+
+

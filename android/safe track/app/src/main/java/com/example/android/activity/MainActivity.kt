@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
         val prefs = getSharedPreferences("SafeTrackPrefs", MODE_PRIVATE)
         val isServiceEnabled = prefs.getBoolean("service_enabled", false)
-
+        Log.d("sercideMain", "service_enabled = $isServiceEnabled") // Add this
         if (isServiceEnabled) {
             val serviceIntent = Intent(this, PowerButtonService::class.java)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

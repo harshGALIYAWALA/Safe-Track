@@ -1,6 +1,7 @@
 package com.example.android.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.android.R
 import com.example.android.databinding.ActivitySettingScreenBinding
+import com.example.android.service.LocationService
 import com.example.android.service.PowerButtonService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -24,6 +26,9 @@ class setting_screen : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var database: FirebaseDatabase
 
+    private lateinit var sharedPrefs: SharedPreferences
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,28 +41,52 @@ class setting_screen : AppCompatActivity() {
 
         // sharePreference
         // Load saved switch state
+//        val prefs = getSharedPreferences("SafeTrackPrefs", MODE_PRIVATE)
+//        val isServiceEnabled = prefs.getBoolean("service_enabled", false)
+//        binding.emergencyForegoundButton.isChecked = isServiceEnabled
+//
+//        // Handle switch toggle
+//        binding.emergencyForegoundButton.setOnCheckedChangeListener { _, isChecked ->
+//            prefs.edit().putBoolean("service_enabled", isChecked).apply()
+//
+//            val serviceIntent = Intent(this, PowerButtonService::class.java)
+//
+//            if (isChecked) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                    startForegroundService(serviceIntent)
+//                } else {
+//                    startService(serviceIntent)
+//                }
+//
+//            } else {
+//                stopService(serviceIntent)
+//            }
+//
+//
+//        }
+
         val prefs = getSharedPreferences("SafeTrackPrefs", MODE_PRIVATE)
         val isServiceEnabled = prefs.getBoolean("service_enabled", false)
         binding.emergencyForegoundButton.isChecked = isServiceEnabled
 
-        // Handle switch toggle
-        binding.emergencyForegoundButton.setOnCheckedChangeListener { _, isChecked ->
-            prefs.edit().putBoolean("service_enabled", isChecked).apply()
+// Set listener only AFTER setting isChecked, to avoid it firing on load
+        binding.emergencyForegoundButton.setOnCheckedChangeListener(null) // remove any existing listener
 
-            val serviceIntent = Intent(this, PowerButtonService::class.java)
+        binding.emergencyForegoundButton.post {
+            binding.emergencyForegoundButton.setOnCheckedChangeListener { _, isChecked ->
+                prefs.edit().putBoolean("service_enabled", isChecked).apply()
 
-            if (isChecked) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(serviceIntent)
+                val serviceIntent = Intent(this, PowerButtonService::class.java)
+                if (isChecked) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        startForegroundService(serviceIntent)
+                    } else {
+                        startService(serviceIntent)
+                    }
                 } else {
-                    startService(serviceIntent)
+                    stopService(serviceIntent)
                 }
-
-            } else {
-                stopService(serviceIntent)
             }
-
-
         }
 
         // fetch name and set to textview as a Profile name
@@ -78,6 +107,37 @@ class setting_screen : AppCompatActivity() {
         binding.contactUs.setOnClickListener{
             startActivity(Intent(this, contact_us::class.java))
         }
+
+
+        // Initialize sharedPrefs
+        sharedPrefs = getSharedPreferences("SafeTrackPrefs", MODE_PRIVATE)
+
+// Temporarily remove listener to avoid triggering on programmatic change
+        binding.trackingService.setOnCheckedChangeListener(null)
+
+// Restore saved state
+        val isTrackingEnabled = sharedPrefs.getBoolean("location_tracking", false)
+        binding.trackingService.isChecked = isTrackingEnabled
+
+// Now add the listener
+        binding.trackingService.setOnCheckedChangeListener { _, isChecked ->
+            sharedPrefs.edit().putBoolean("location_tracking", isChecked).apply()
+
+            val serviceIntent = Intent(this, LocationService::class.java)
+            if (isChecked) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(serviceIntent)
+                } else {
+                    startService(serviceIntent)
+                }
+                Toast.makeText(this, "Location service started", Toast.LENGTH_SHORT).show()
+            } else {
+                stopService(serviceIntent)
+                Toast.makeText(this, "Location service stopped", Toast.LENGTH_SHORT).show()
+            }
+        }
+//
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -111,18 +171,18 @@ class setting_screen : AppCompatActivity() {
         }
     }
 
-    private fun startService() {
-        val intent = Intent(this, PowerButtonService::class.java)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(intent)
-        } else {
-            startService(intent)
-        }
-    }
-
-    private fun stopService() {
-        val intent = Intent(this, PowerButtonService::class.java)
-        stopService(intent)
-    }
+//    private fun startService() {
+//        val intent = Intent(this, PowerButtonService::class.java)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(intent)
+//        } else {
+//            startService(intent)
+//        }
+//    }
+//
+//    private fun stopService() {
+//        val intent = Intent(this, PowerButtonService::class.java)
+//        stopService(intent)
+//    }
 }
 

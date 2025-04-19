@@ -59,6 +59,7 @@ class PowerButtonService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        stopForeground(STOP_FOREGROUND_REMOVE)
         unregisterReceiver(receiver)
         Log.d("PowerButtonReceiver", "Service destroyed and receiver unregistered")
     }

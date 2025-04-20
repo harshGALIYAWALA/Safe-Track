@@ -2,11 +2,13 @@ package com.example.android.activity
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -121,18 +123,49 @@ class setting_screen : AppCompatActivity() {
 
 // Now add the listener
         binding.trackingService.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("location_tracking", isChecked).apply()
-
-            val serviceIntent = Intent(this, LocationService::class.java)
+//            sharedPrefs.edit().putBoolean("location_tracking", isChecked).apply()
+//
+//            val serviceIntent = Intent(this, LocationService::class.java)
+//            if (isChecked) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                    startForegroundService(serviceIntent)
+//                } else {
+//                    startService(serviceIntent)
+//                }
+//                Toast.makeText(this, "Location service started", Toast.LENGTH_SHORT).show()
+//            } else {
+//                stopService(serviceIntent)
+//                Toast.makeText(this, "Location service stopped", Toast.LENGTH_SHORT).show()
+//            }
             if (isChecked) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(serviceIntent)
+                if (!isGPSEnabled()) {
+                    AlertDialog.Builder(this)
+                        .setTitle("GPS is Off")
+                        .setMessage("Location tracking requires GPS. Turn it on?")
+                        .setPositiveButton("Yes") { _, _ ->
+                            // Send user to location settings
+                            startActivity(Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                            binding.trackingService.isChecked = false // uncheck until GPS is on
+                        }
+                        .setNegativeButton("No") { _, _ ->
+                            binding.trackingService.isChecked = false
+                            Toast.makeText(this, "Service not started. GPS required.", Toast.LENGTH_SHORT).show()
+                        }
+                        .setCancelable(false)
+                        .show()
                 } else {
-                    startService(serviceIntent)
+                    sharedPrefs.edit().putBoolean("location_tracking", true).apply()
+                    val serviceIntent = Intent(this, LocationService::class.java)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        startForegroundService(serviceIntent)
+                    } else {
+                        startService(serviceIntent)
+                    }
+                    Toast.makeText(this, "Location service started", Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(this, "Location service started", Toast.LENGTH_SHORT).show()
             } else {
-                stopService(serviceIntent)
+                sharedPrefs.edit().putBoolean("location_tracking", false).apply()
+                stopService(Intent(this, LocationService::class.java))
                 Toast.makeText(this, "Location service stopped", Toast.LENGTH_SHORT).show()
             }
         }
@@ -169,6 +202,11 @@ class setting_screen : AppCompatActivity() {
             })
 
         }
+    }
+
+    private fun isGPSEnabled(): Boolean{
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
 //    private fun startService() {

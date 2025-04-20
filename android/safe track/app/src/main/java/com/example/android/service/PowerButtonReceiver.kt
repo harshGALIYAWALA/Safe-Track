@@ -40,7 +40,7 @@ class PowerButtonReceiver : BroadcastReceiver() {
                 handler.removeCallbacks(resetRunnable)
                 handler.postDelayed(resetRunnable, resetDelay)
 
-                if (pressCount >= 2) {
+                if (pressCount >= 5) {
                     pressCount = 0
 
 

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -15,6 +16,7 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.example.android.R
+import com.example.android.activity.setting_screen
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -103,15 +105,27 @@ class LocationService: Service() {
             val channel = NotificationChannel(
                 channelId,
                 channelName,
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
             )
             val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(channel)
         }
 
+        // Create Intent to open the desired Activity when clicked
+        val intent = Intent(this, setting_screen::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
         val notification = NotificationCompat.Builder(this, channelId)
             .setContentTitle("tracking Location")
             .setContentText("Live location is being tracked")
+            .setContentIntent(pendingIntent)
+            .setOngoing(true)
             .setSmallIcon(R.drawable.marker_map)
             .build()
 

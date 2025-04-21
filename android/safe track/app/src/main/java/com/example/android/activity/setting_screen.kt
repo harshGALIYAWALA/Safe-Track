@@ -97,9 +97,8 @@ class setting_screen : AppCompatActivity() {
 
         binding.logOut.setOnClickListener{
             auth.signOut()
-            finish()
             startActivity(Intent(this, login_screen::class.java))
-
+            finish()
         }
 
         binding.termAndCondition.setOnClickListener{

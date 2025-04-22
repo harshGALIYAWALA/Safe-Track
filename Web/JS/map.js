@@ -31,11 +31,13 @@ const map = new maptilersdk.Map({
 // fetching datat from firebase
 // Realtime marker tracking
 let marker = null;
+let firstTime = true;
+
 const userIdToTrack = "HKgO2l5UWgggAUrp6BgIqPSGKgl2";
 const liveLocationRef = ref(database, `user/${userIdToTrack}/liveLocation`);
 
 onValue(liveLocationRef, (snapshot) => {
-    console.log(`the value is = ${snapshot.val()}`);  // Log the entire value
+    console.log(`the value is = ${snapshot.val()}`);  // Log 
     const data = snapshot.val();
     if (data) {
         const { latitude, longitude } = data;
@@ -47,7 +49,10 @@ onValue(liveLocationRef, (snapshot) => {
                 .setLngLat([longitude, latitude])
                 .addTo(map);
         }
-        map.setCenter([longitude, latitude]); // Optional
+        if(firstTime){
+            map.setCenter([longitude, latitude]); 
+            firstTime = false;
+        }
     } else {
         console.log("No live location data available.");
     }

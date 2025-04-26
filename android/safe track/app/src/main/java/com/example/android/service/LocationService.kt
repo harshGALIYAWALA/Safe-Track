@@ -13,10 +13,15 @@ import android.os.Build
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.example.android.R
 import com.example.android.activity.setting_screen
+import com.example.android.model.CreatedAt
+import com.example.android.model.Location
+import com.example.android.model.TrackingRetrofitModel
+import com.example.android.objects.LocationTrackingRetrofit
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -25,6 +30,12 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.sql.Time
+import java.time.LocalDate
+import java.time.LocalTime
 
 class LocationService: Service() {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -55,9 +66,15 @@ class LocationService: Service() {
                 location?.let {
                    count++
                     Log.d("LocationService", "$count Location updated: ${it.latitude}, ${it.longitude}")
-                    val timestamp = it.time/1000      // Convert to seconds (Unix time)
-                    val isSharing = true  // You can toggle this later dynamically
-                    saveLocationToFirebase(it.latitude, it.longitude, timestamp, isSharing)
+//                    val timestamp = it.time/1000      // Convert to seconds (Unix time)
+//                    val isSharing = true  // You can toggle this later dynamically
+//                    storing location in firebase
+//                    saveLocationToFirebase(it.latitude, it.longitude, timestamp, isSharing)
+
+                    // sending location to backend
+                    val time = LocalTime.now()
+                    val date = LocalDate.now()
+                   sendLocationToBackend(it.latitude, it.latitude, time, date)
 
                 }?: Log.d("LocationService", "Location is null")
             }
@@ -67,6 +84,37 @@ class LocationService: Service() {
             Log.d("LocationService", "Permission not granted")
         }
         fusedLocationProviderClient.requestLocationUpdates(request, locationCallback, Looper.getMainLooper())
+    }
+
+    // storing location to backend using retrofit (Node, Express and MongoDB)
+    private fun sendLocationToBackend(latitude: Double, longitude: Double, time: LocalTime, date: LocalDate){
+        val session = TrackingRetrofitModel(
+            userId = "1",
+            location = Location(latitude, longitude),
+            createdAt = CreatedAt(date.toString(), time.toString())
+        )
+        LocationTrackingRetrofit.locationTrackingApi.sendLocation(session).enqueue(object : Callback<TrackingRetrofitModel>{
+            override fun onResponse(
+                p0: Call<TrackingRetrofitModel?>,
+                p1: Response<TrackingRetrofitModel?>
+            ) {
+                Log.d("LocationService", "success")
+                if(p1.isSuccessful){
+                    Toast.makeText(this@LocationService, "Retrofit is Working", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@LocationService, "it is working but something is down", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(
+                p0: Call<TrackingRetrofitModel?>,
+                p1: Throwable
+            ) {
+                Log.d("LocationService", "failed ${p1.message}")
+                Toast.makeText(this@LocationService, "whole system is broken! ${p1.message}", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     // storing location to firebase

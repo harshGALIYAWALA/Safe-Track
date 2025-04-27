@@ -41,32 +41,6 @@ class setting_screen : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
-        // sharePreference
-        // Load saved switch state
-//        val prefs = getSharedPreferences("SafeTrackPrefs", MODE_PRIVATE)
-//        val isServiceEnabled = prefs.getBoolean("service_enabled", false)
-//        binding.emergencyForegoundButton.isChecked = isServiceEnabled
-//
-//        // Handle switch toggle
-//        binding.emergencyForegoundButton.setOnCheckedChangeListener { _, isChecked ->
-//            prefs.edit().putBoolean("service_enabled", isChecked).apply()
-//
-//            val serviceIntent = Intent(this, PowerButtonService::class.java)
-//
-//            if (isChecked) {
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                    startForegroundService(serviceIntent)
-//                } else {
-//                    startService(serviceIntent)
-//                }
-//
-//            } else {
-//                stopService(serviceIntent)
-//            }
-//
-//
-//        }
-
         val prefs = getSharedPreferences("SafeTrackPrefs", MODE_PRIVATE)
         val isServiceEnabled = prefs.getBoolean("service_enabled", false)
         binding.emergencyForegoundButton.isChecked = isServiceEnabled
@@ -186,16 +160,25 @@ class setting_screen : AppCompatActivity() {
 
             nameRef.child("firstName").addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val name = snapshot.getValue(String::class.java)
-                    name?.let {
-                        binding.name.text = it
-                        Toast.makeText(this@setting_screen, "name fetched successfully", Toast.LENGTH_SHORT).show()
-                    }?: Toast.makeText(this@setting_screen, "name not found", Toast.LENGTH_SHORT).show()
+                    if (snapshot.exists()) { //check if the snapshot exists
+                        val name = snapshot.getValue(String::class.java)
+                        name?.let {
+                            binding.name.text = it
+                            Log.d("FirebaseName", "Name fetched successfully: $it")
+                        } ?: run {
+                            Log.w("FirebaseName", "Name is null in database")
+                            binding.name.text = "Name Not Found" // set a default
+                        }
+                    } else {
+                        Log.w("FirebaseName", "User data does not exist for this user")
+                        binding.name.text = "Name Not Found"
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@setting_screen, "failed to fetch name ", Toast.LENGTH_SHORT).show()
                     Log.e("FirebaseName", "Database error: ${error.message}")
+                    Toast.makeText(this@setting_screen, "Failed to fetch name: ${error.message}", Toast.LENGTH_SHORT).show()
+                    binding.name.text = "Error"
                 }
 
             })

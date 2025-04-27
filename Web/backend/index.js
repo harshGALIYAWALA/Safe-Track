@@ -15,22 +15,23 @@ app.get("/", (req, res) => {
 
 app.post("/api/startSession", async (req, res) => {
     try {
-        const { name, Location } = req.body;
-
-        const sessionData = new session({
-            name,
-            Location,
-            createdAt: {
-                date: new Date().toLocaleDateString(),
-                time: new Date().toLocaleTimeString()
-            }
-        });
-        await sessionData.save()
-        res.status(201).json({
-            success: true,
-            message: "Session started successfully",
-            sessionData
-        });
+        const { uid, location, createdAt } = req.body;
+        // Check if user already exists
+        const existingSession = await session.findOne({ uid });
+        if (existingSession) {
+            existingSession.location = location;
+            existingSession.createdAt = createdAt;
+            await existingSession.save();
+            res.status(200).json({ message: "Location updated" });
+        } else {
+            const newSession = new session({
+                uid,
+                location,
+                createdAt
+            });
+            await newSession.save();
+            res.status(201).json({ message: "Session created" });
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({
@@ -47,6 +48,6 @@ app.get("/sessions", async (req, res) => {
     res.json(sessions);
 });
 
-app.listen(5000, '0.0.0.0',() => {
+app.listen(5000, '0.0.0.0', () => {
     console.log("server has started on port 5000");
 });

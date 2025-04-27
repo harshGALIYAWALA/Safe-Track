@@ -74,7 +74,7 @@ class LocationService: Service() {
                     // sending location to backend
                     val time = LocalTime.now()
                     val date = LocalDate.now()
-                   sendLocationToBackend(it.latitude, it.latitude, time, date)
+                   sendLocationToBackend(it.latitude, it.longitude, time, date)
 
                 }?: Log.d("LocationService", "Location is null")
             }
@@ -88,8 +88,9 @@ class LocationService: Service() {
 
     // storing location to backend using retrofit (Node, Express and MongoDB)
     private fun sendLocationToBackend(latitude: Double, longitude: Double, time: LocalTime, date: LocalDate){
+        val userId = FirebaseAuth.getInstance().currentUser?.uid?:"no user"
         val session = TrackingRetrofitModel(
-            userId = "1",
+            uid = userId,
             location = Location(latitude, longitude),
             createdAt = CreatedAt(date.toString(), time.toString())
         )
@@ -98,10 +99,11 @@ class LocationService: Service() {
                 p0: Call<TrackingRetrofitModel?>,
                 p1: Response<TrackingRetrofitModel?>
             ) {
-                Log.d("LocationService", "success")
                 if(p1.isSuccessful){
+                    Log.d("LocationService", "success")
                     Toast.makeText(this@LocationService, "Retrofit is Working", Toast.LENGTH_SHORT).show()
                 }else{
+                    Log.d("LocationService", "success but >?= " + p1.code())
                     Toast.makeText(this@LocationService, "it is working but something is down", Toast.LENGTH_SHORT).show()
                 }
             }

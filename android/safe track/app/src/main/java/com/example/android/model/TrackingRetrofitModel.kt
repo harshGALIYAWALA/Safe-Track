@@ -11,7 +11,7 @@ data class CreatedAt(
 )
 
 data class TrackingRetrofitModel(
-    val userId: String,
+    val uid: String,
     val location: Location?,
     val createdAt: CreatedAt?
 )

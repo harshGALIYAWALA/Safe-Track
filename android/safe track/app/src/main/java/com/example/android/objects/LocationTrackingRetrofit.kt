@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object LocationTrackingRetrofit {
     private val locationTrackingRet by lazy {
-        Retrofit.Builder().baseUrl("http://192.168.4.100:5000")
+        Retrofit.Builder().baseUrl("http://192.168.4.101:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

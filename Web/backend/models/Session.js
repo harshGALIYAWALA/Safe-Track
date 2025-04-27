@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 
-const sessionSchema = new mongoose.Schema({
-    name: String, 
-    Location:{
-        lat: Number,
-        lng: Number
+const SessionSchema = new mongoose.Schema({
+    uid: {
+        type: String,
+        required: true,
+        unique: true
     },
-    createdAt:{
-        date: {
-            type: String,
-            default: () => new Date().toLocaleDateString()
-        },
-        time: {
-            type: String,
-            default: () => new Date().toLocaleTimeString()
-        }
+    location: {
+        latitude: Number,
+        longitude: Number
+    },
+    createdAt: {
+        date: String,
+        time: String
     }
 });
 
-module.exports = mongoose.model("Session", sessionSchema);
+const Session = mongoose.model('Session', SessionSchema);
+
+module.exports = Session;

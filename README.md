@@ -123,3 +123,23 @@ We’d like to thank:
 * **Android Developer Community** – for ongoing inspiration and solutions
 * Our friends and mentors – for their feedback, support, and encouragement
 * Women around the world – whose safety inspired this project
+---
+
+# Safe Track - Project Shutdown Announcement
+
+It's with a heavy heart that I must share the news: the Safe Track project, on which I've poured the last three months of my time and energy, is being shut down. My initial motivation was deeply rooted in the desire to create an app that truly empowers women and enhances their safety. The thought that no one had quite tackled this specific approach before fueled my dedication. However, after months of intensive work, I've come to understand the significant complexities involved in bringing this vision to life as a solo developer.
+
+### Challenges Faced
+
+1. **Restrictions on Background Automation in Android**: Achieving the level of seamless automation I envisioned is significantly restricted by the Android operating system's limitations on background processes.
+2. **Too Many Edge Cases**: Ensuring the app functions reliably across a multitude of scenarios and potential issues has revealed an overwhelming number of edge cases that require careful consideration and coding.
+3. **My Current Knowledge as a Fresher**: As a relatively new developer, I've come to realize that my current knowledge and skill set are, unfortunately, a limiting factor in effectively navigating these complex technical hurdles.
+4. **Excessive Time Commitment**: The project has demanded countless days and nights of work, and while I was prepared for a significant time commitment, the reality of balancing this with my academic responsibilities as a college student – assignments, exams, vivas – has become unsustainable.
+5. **Memory Issues**: Maintaining continuous background location tracking and other real-time features has presented significant challenges in terms of memory management.
+6. **Performance Issues**: Ensuring the app remains responsive and doesn't negatively impact the user's device performance while running in the background has proven difficult.
+7. **Battery Life Concerns**: Continuous location tracking and background processes inevitably lead to significant battery drain, which is a critical concern for a safety-focused application.
+8. **Overwhelming Scope for a Solo Developer**: The sheer scope and complexity of building a robust and reliable real-time safety application with all the intended features is simply too much for a single developer to handle effectively.
+9. **Time vs. Financial Constraints**: As a college student, my time is limited due to academic commitments, and the extended development time without any immediate financial return is not sustainable.
+10. **Cost of Real-time Features (Storage)**: Implementing and maintaining the backend infrastructure required for real-time location tracking and data storage incurs ongoing costs that are beyond my current capacity.
+
+Ultimately, the combination of these technical limitations, the overwhelming scope for a solo developer with my current experience level, and the constraints of time and resources has led to the difficult decision to shut down the Safe Track project. It's a disheartening conclusion after such dedicated effort driven by a sincere desire to contribute to women's safety.

@@ -15,10 +15,6 @@ const firebaseConfig = {
     measurementId: "G-XG51YB91FV"
 };
 
- // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
 const MAP_API_KEY = "fIVoqc2T9Nh7Y7NIz9r9";
 
 const map = new maptilersdk.Map({
@@ -28,32 +24,32 @@ const map = new maptilersdk.Map({
     zoom: 12.0 // starting zoom
 });
 
-// fetching datat from firebase
-// Realtime marker tracking
-let marker = null;
-let firstTime = true;
+const urlParams = new URLSearchParams(window.location.search);
+    const uid = urlParams.get('uid'); // e.g. ?uid=HKgO2l5UWgggAUrp6BgIqPSKg1z
 
-const userIdToTrack = "HKgO2l5UWgggAUrp6BgIqPSGKgl2";
-const liveLocationRef = ref(database, `user/${userIdToTrack}/liveLocation`);
+    async function fetchLocation() {
+      try {
+        const res = await fetch(`http://localhost:5000/api/location/${uid}`);
+        const data = await res.json();
 
-onValue(liveLocationRef, (snapshot) => {
-    console.log(`the value is = ${snapshot.val()}`);  // Log 
-    const data = snapshot.val();
-    if (data) {
-        const { latitude, longitude } = data;
-        console.log("Latitude:", latitude, "Longitude:", longitude);
-        if (marker) {
-            marker.setLngLat([longitude, latitude]);
-        } else {
-            marker = new maptilersdk.Marker({ color: 'red' })
-                .setLngLat([longitude, latitude])
-                .addTo(map);
+        if (!data.location) {
+          alert("No location found for this UID.");
+          return;
         }
-        if(firstTime){
-            map.setCenter([longitude, latitude]); 
-            firstTime = false;
-        }
-    } else {
-        console.log("No live location data available.");
+
+        const lat = data.location.latitude;
+        const lng = data.location.longitude;
+
+        // Center the map on the fetched location
+        map.setCenter([lng, lat]);
+
+        // Add marker
+        new maptilersdk.Marker().setLngLat([lng, lat]).addTo(map);
+      } catch (err) {
+        console.error('Error fetching location:', err);
+        alert('Failed to load location.');
+      }
     }
-});
+
+    fetchLocation();
+

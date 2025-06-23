@@ -56,6 +56,74 @@ footer {
     color: #6c63ff;
     text-align: center;
 }
+/* Tablets (width 600px to 900px) */
+@media screen and (max-width: 900px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .nav-links {
+        padding-right: 0;
+        gap: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    table {
+        width: 90%;
+    }
+
+    table td {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    table img {
+        width: 90%;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+/* Phones (width less than 600px) */
+@media screen and (max-width: 600px) {
+    header {
+        padding: 15px;
+    }
+
+    header h2 {
+        font-size: 1.2em;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    a {
+        font-size: 0.9em;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+
+    table td h2 {
+        font-size: 1em;
+    }
+
+    footer h4 {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}
+
 </style>
 <body>
     <div class="head">
@@ -73,19 +141,29 @@ footer {
     <table>
         <tr>
             <td>
-                <img src="../AA_grad_martrials/images/f3-1.jpg" alt="There is an image" height="400" width="210">
+                <img src="../images/common.jpg" alt="There is an image" height="400" width="210">
             </td>
             <td><h2>Step-1 Go to app's home screen and click on live track</h2></td>
         </tr>
         <tr>
-            <td><h2>Step-2 Click on Emergency Contacts. From here, you can access to helpline numbers .</h2></td>
-            <td>
-                <img src="../AA_grad_martrials/images/f3-1.jpg" alt="There is an image" height="400" width="210">
-            </td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>
-                <img src="../AA_grad_martrials/images/f3-2.jpg" alt="There is an image" height="400" width="210">
+                <img src="../images/f3-1.jpg" alt="There is an image" height="400" width="210">
+            </td>
+            <td><h2>Step-2 Click on Emergency Contacts. From here, you can access to helpline numbers .</h2></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="../images/f3-2.jpg" alt="There is an image" height="400" width="210">
             </td>
             <td><h2>...</h2></td>
         </tr>

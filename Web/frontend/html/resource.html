@@ -76,6 +76,90 @@ footer {
     color: #6c63ff;
     text-align: center;
 }
+/* Tablets (width between 600px and 900px) */
+@media screen and (max-width: 900px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        padding-right: 0;
+        margin-top: 10px;
+    }
+
+    table {
+        width: 90%;
+        font-size: 0.95em;
+    }
+
+    th[colspan="2"] h3 {
+        font-size: 1.2em;
+    }
+
+    td a {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Phones (width up to 600px) */
+@media screen and (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+
+    header h2 {
+        font-size: 1.2em;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.9em;
+    }
+
+    table {
+        width: 95%;
+        font-size: 0.85em;
+    }
+
+    th[colspan="2"] h3 {
+        font-size: 1.1em;
+    }
+
+    td a {
+        display: inline-block;
+        margin: 3px 2px;
+        font-size: 0.85em;
+    }
+
+    img {
+        width: 90%;
+        height: auto;
+    }
+
+    footer h4 {
+        font-size: 0.9em;
+        padding: 10px 0;
+    }
+}
+
 </style>
 <body>
     <div class="head">
@@ -359,7 +443,7 @@ footer {
             <td>Woman Safety Division-Ministry of Home Affairs</td>
             <td>
                 <a href="https://www.mha.gov.in/en/divisionofmha/women-safety-division" target="_blank">
-                    <img src="../AA_grad_martrials/images/i1.png" alt="Couldn't load image" height="180" width="250">
+                    <img src="../images/i1.png" alt="Couldn't load image" height="180" width="250">
                 </a>
             </td>
         </tr>
@@ -367,7 +451,7 @@ footer {
             <td>National Commission for Women</td>
             <td>
                 <a href="https://www.ncw.gov.in/" target="_blank">
-                    <img src="../AA_grad_martrials/images/i2.png" alt="Couldn't load image" height="180" width="250">
+                    <img src="../images/i2.png" alt="Couldn't load image" height="180" width="250">
                 </a>
             </td>
         </tr>
@@ -375,7 +459,7 @@ footer {
             <td>Red Dot Foundation</td>
             <td>
                 <a href="https://reddotfoundation.in/" target="_blank">
-                    <img src="../AA_grad_martrials/images/i3.png" alt="Couldn't load image" height="180" width="250">
+                    <img src="../images/i3.png" alt="Couldn't load image" height="180" width="250">
                 </a>
             </td>
         </tr>
